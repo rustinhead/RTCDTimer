@@ -53,7 +53,6 @@ class RTCDTimer {
         addObserver()
     }
     
-    
     /// 初始化计时器，采用闭包函数方式回调；使用此方法初始化后，即使设置代理也不会调用代理方法
     init(identifier:String, owner:NSObject!, handlerPerSecond:((Int)->Void)?, completion:(()->Void)?){
         self.identifier = identifier
@@ -62,7 +61,6 @@ class RTCDTimer {
         self.completionHandler = completion
         addObserver()
     }
-    
     
     /// 开启新的倒计时，原有的倒计时将被清除
     ///
@@ -79,7 +77,6 @@ class RTCDTimer {
         countdown = RTCountdown.init(data: dataArr)
         timer = newTimer()
     }
-    
     
     /// 继续已有的倒计时,重置回调函数,若调用时该id的倒计时已经完成或数据不存在，则返回false，未完成则返回true，返回false时，handlerPerSecond和completion均不会执行
     ///
@@ -103,7 +100,6 @@ class RTCDTimer {
         }
     }
     
-    
     /// 原有倒计时基础上延长计时，重置回调函数，若原有倒计时已完成，则开启新的倒计时
     ///
     /// - Parameters:
@@ -119,7 +115,6 @@ class RTCDTimer {
             startNewCountdown(seconds: seconds, owner: owner, handlerPerSecond: handlerPerSecond, completion: completion)
         }
     }
-    
     
 //    /// 在正在运行的倒计时基础上延长计时，若原有倒计时已完成，则开启新的倒计时，执行之前传入的回调函数
 //    ///
@@ -164,7 +159,6 @@ class RTCDTimer {
         countdown = nil
     }
     
-    
     func newTimer() -> Timer{
         if oneSecHandler != nil {oneSecHandler!(Int(self.countdown!.totalTimeInterval! - self.countdown!.currentTimeInterval!))}
         delegate?.oneSecondCallback(cdtimer: self, leftSeconds: Int(self.countdown!.totalTimeInterval! - self.countdown!.currentTimeInterval!))
@@ -200,7 +194,6 @@ class RTCDTimer {
             return nil
         }
     }
-    
     
     /// 删除本地化数据
     ///
